@@ -19,6 +19,8 @@ services:
       - db
   
   db:
+    restart: unless-stopped
+    hostname: db
     image: postgres:10-alpine
     ports:
       - "5432:5432"
