@@ -1,6 +1,18 @@
 version: "3"
 
 services:
+
+  db:
+    restart: unless-stopped
+    hostname: db
+    image: postgres:10-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=supersecretpassword
+  
   app:
     build:
       context: .
@@ -18,13 +30,4 @@ services:
     depends_on:
       - db
   
-  db:
-    restart: unless-stopped
-    hostname: db
-    image: postgres:10-alpine
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=app
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=supersecretpassword
+  
