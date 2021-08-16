@@ -4,6 +4,7 @@ python:
 
 services:
   - docker
+  - postgres
 
 before_script: pip install docker-compose
 
